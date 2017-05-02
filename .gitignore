@@ -1,1 +1,4 @@
 dotvim
+.swp
+.pyc
+.DS_Store
