@@ -1,4 +1,4 @@
-This is where I keep all my config files. Most programs just need to be install
+This is where I keep all my config files. Most programs just need to be installed
 and then have their dotfiles symlinked. 
 
 Vim is the special case. 
