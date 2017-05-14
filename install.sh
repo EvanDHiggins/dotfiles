@@ -69,9 +69,8 @@ function link-dotfiles {
 
 function main {
     # This will typically be ~/dotfiles
-    SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-    VIM_BIN=$(which vim)
-    DOT_VIM_DIR=${SCRIPTDIR}/.vim
+    SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    DOT_VIM_DIR=${SCRIPT_DIR}/.vim
 
     # Install vim based on system
     if [[ "$(uname -s)" == "Darwin" ]]; then
@@ -88,7 +87,7 @@ function main {
 
     echo "Initializing Vundle..."
     git clone https://github.com/gmarik/Vundle ${DOT_VIM_DIR}/bundle/Vundle.vim
-    cd $SCRIPTDIR
+    cd $SCRIPT_DIR
     ${VIM_BIN} +PluginInstall +qall
 
 
@@ -100,6 +99,5 @@ function main {
     chsh -s "$(which zsh)"
     env zsh
 }
-
 main
 echo "Done. Who needs an IDE."
