@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/ehiggins/.oh-my-zsh
+export ZSH=/home/ehiggins/.oh-my-zsh
 export GOPATH=${HOME}/golang
 alias vim=${HOME}/.vim-install/bin/vim
 alias vi=${HOME}/.vim-install/bin/vim
