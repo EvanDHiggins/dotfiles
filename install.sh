@@ -31,13 +31,13 @@ function linux-vim-install {
                --enable-luainterp=yes \
                --enable-gui=gtk2 --enable-cscope --prefix=$VIMINSTALL
 
-    sudo make install
+    make install
 
     U=$USER
     sudo chown ${U}:${U} ${VIMINSTALL} -R
     VIM_BIN=${VIMINSTALL}/bin/vim
     echo "Cleaning up vim source files..."
-    rm ${VIMSRC}
+    rm -rf ${VIMSRC}
 }
 
 function osx-install {
