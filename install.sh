@@ -1,5 +1,6 @@
 #!/bin/bash
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 function linux-vim-install {
     VIMINSTALL=${HOME}/.vim-install/
@@ -38,6 +39,7 @@ function linux-vim-install {
     VIM_BIN=${VIMINSTALL}/bin/vim
     echo "Cleaning up vim source files..."
     rm -rf ${VIMSRC}
+    cd ${SCRIPT_DIR}
 }
 
 function osx-install {
@@ -69,7 +71,6 @@ function link-dotfiles {
 
 function main {
     # This will typically be ~/dotfiles
-    SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
     DOT_VIM_DIR=${SCRIPT_DIR}/.vim
 
     # Install vim based on system
