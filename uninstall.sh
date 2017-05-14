@@ -14,7 +14,7 @@ fi
 }
 
 deletepath ${HOME}/.vim-install
-deletepath ${home}/.oh-my-zshrc
+deletepath ${HOME}/.oh-my-zshrc
 
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 deletepath ${SCRIPTDIR}
