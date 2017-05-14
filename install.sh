@@ -33,7 +33,11 @@ function linux-vim-install {
 
     sudo make install
 
+    U=$USER
+    sudo chown ${U}:${U} ${VIMINSTALL} -R
     VIM_BIN=${VIMINSTALL}/bin/vim
+    echo "Cleaning up vim source files..."
+    rm ${VIMSRC}
 }
 
 function osx-install {
