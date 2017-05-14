@@ -52,7 +52,7 @@ function osx-install {
 # Links various config files to their location. Most of these
 # go in $HOME. Sometimes dotfiles are expected in ${HOME}/.config
 function link-dotfiles {
-    $DOT_FILES_DIR=$1
+    DOT_FILES_DIR=$1
     echo "Linking .zshrc to ${HOME}/.zshrc"
     ln -s ${DOT_FILES_DIR}/.zshrc ${HOME}/.zshrc
 
@@ -80,7 +80,6 @@ function main {
 
     echo "Configuring .oh-my-zsh..."
     git clone git://github.com/robbyrussell/oh-my-zsh.git ${HOME}/.oh-my-zsh
-    chsh -s "$(which zsh)"
 
 
     echo "Initializing Vundle..."
@@ -94,6 +93,7 @@ function main {
     cd ${DOT_VIM_DIR}/bundle/YouCompleteMe/
     ./install.py
     cd $HOME
+    chsh -s "$(which zsh)"
     env zsh
 }
 
