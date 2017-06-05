@@ -42,7 +42,7 @@ function linux-vim-install {
     cd ${SCRIPT_DIR}
 }
 
-function osx-install {
+function osx-vim-install {
     if ! type "brew" > /dev/null ; then
         echo "Brew does not exist. Installing..."
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -50,9 +50,11 @@ function osx-install {
 
     echo "Installing vim with homebrew..."
     brew update
-    brew install vim macvim zsh
+    brew install macvim --with-override-system-vim
+    brew linkapps
+    brew install macvim zsh
     brew link macvim
-    VIM_BIN=mvim
+    VIM_BIN=vim
 }
 
 # Links various config files to their location. Most of these
