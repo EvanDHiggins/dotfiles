@@ -50,7 +50,7 @@ function osx-vim-install {
 
     echo "Installing vim with homebrew..."
     brew update
-    brew install macvim zsh
+    brew install tmux macvim zsh
     brew link macvim
     VIM_BIN='mvim -v'
 }
