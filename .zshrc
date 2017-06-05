@@ -2,10 +2,16 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/ehiggins/.oh-my-zsh
+export ZSH=${HOME}/.oh-my-zsh
 export GOPATH=${HOME}/golang
-alias vim=${HOME}/.vim-install/bin/vim
-alias vi=${HOME}/.vim-install/bin/vim
+
+if [[ $(uname) == 'Darwin' ]]; then
+    alias vim='mvim -v'
+    alias vi='mvim -v'
+else
+    alias vim=${HOME}/.vim-install/bin/vim
+    alias vi=${HOME}/.vim-install/bin/vim
+fi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.

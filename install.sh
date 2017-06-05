@@ -50,11 +50,9 @@ function osx-vim-install {
 
     echo "Installing vim with homebrew..."
     brew update
-    brew install macvim --with-override-system-vim
-    brew linkapps
     brew install macvim zsh
     brew link macvim
-    VIM_BIN=vim
+    VIM_BIN='mvim -v'
 }
 
 # Links various config files to their location. Most of these
