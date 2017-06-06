@@ -17,7 +17,7 @@ function linux-vim-install {
 
     sudo apt -y install tmux zsh libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev \
         libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
-        python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git cmake
+        python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git cmake ctags
 
     git clone https://github.com/vim/vim.git $VIMSRC
     cd $VIMSRC
@@ -50,7 +50,7 @@ function osx-vim-install {
 
     echo "Installing vim with homebrew..."
     brew update
-    brew install tmux macvim zsh
+    brew install tmux macvim zsh ctags
     brew link macvim
     VIM_BIN='mvim -v'
 }
