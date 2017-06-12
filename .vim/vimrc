@@ -40,6 +40,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
+Plugin 'derekwyatt/vim-fswitch'
+Plugin 'mileszs/ack.vim'
 
 :call vundle#end()
 :filetype plugin indent on
@@ -52,6 +54,7 @@ Plugin 'majutsushi/tagbar'
 :noremap <leader>t :NERDTreeToggle<CR>
 :let NERDTreeIgnore = ['\.pyc$', '\.hi$', '\.o$']
 :noremap <leader>n :NERDTreeToggle<CR>
+:let NERDTreeWinSize = 45
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -72,7 +75,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 :let g:ycm_register_as_syntastic_checker="true"
 
 "" Ultisnips
-:noremap <leader>u :vsplit<CR>:UltiSnipsEdit<CR>
+:noremap <leader>eu :vsplit<CR>:UltiSnipsEdit<CR>
 
 "This is the voodoo required to make utlisnips work well enough with
 "YouCompleteMe.  Ctrl-Space is the trigger now, not the greatest, but it works
@@ -100,6 +103,26 @@ endfunction
 
 :nnoremap <leader>, :CtrlPTag<CR>
 :nnoremap <silent> <leader>: :TagbarToggle<CR>
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+" Turns of cursorline in tagbar which causes slowdown
+:autocmd FileType tagbar setlocal nocursorline nocursorcolumn
+
+:nnoremap <leader>hl :FSSplitLeft<CR>
+:nnoremap <leader>hr :FSSplitRight<CR>
+:nnoremap <leader>hh :FSHere<CR>
+
+if executable('ag')
+    let g:ackprg = 'ag-no-tags'
+endif
+
+:nnoremap <leader>f :Ack! <C-R><C-W><CR>
 
 """"
 "Syntastic
@@ -136,7 +159,7 @@ autocmd VimEnter * SyntasticToggleMode "Default to passive mode
 :set t_Co=256
 
 "Sets working directory to that of the file open in the buffer
-:set autochdir
+":set autochdir
 
 "Highlights column 80
 :set colorcolumn=80

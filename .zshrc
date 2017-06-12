@@ -13,6 +13,22 @@ else
     alias vi=${HOME}/.vim-install/bin/vim
 fi
 
+export PATH=$PATH:/Users/ehiggins/bin
+
+connectGerrit() {
+  [[ $1 ]]    || { echo "No repository specified" >&2; return 1; }
+  git submodule update --init;
+  git remote add gerrit ssh://gerrit.belvederetrading.com:29418/$1;
+  git review -s
+}
+
+setupGit() {
+  [[ $1 ]]    || { echo "No repository specified" >&2; return 1; }
+  git clone ssh://gerrit:29418/$1;
+  cd $1;
+  connectGerrit $1;
+}
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
