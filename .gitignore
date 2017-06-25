@@ -2,3 +2,4 @@ dotvim
 .swp
 .pyc
 .DS_Store
+auth_token.pk
