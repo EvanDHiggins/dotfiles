@@ -7,7 +7,7 @@
 :nnoremap <leader>a <C-a>
 
 "Sets general config files
-:set shiftwidth=4
+:set shiftwidth=2
 :set smarttab
 :set expandtab
 
@@ -22,7 +22,7 @@
 "
 "********************
 "Vundle complains about fish shell, this changes commands to bash
-:set shell=/bin/bash
+:set shell=/usr/local/bin/zsh
 "This is all just required for Vundle
 :set nocompatible
 :filetype off
@@ -42,6 +42,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
 
 :call vundle#end()
 :filetype plugin indent on
@@ -55,9 +57,12 @@ Plugin 'mileszs/ack.vim'
 :let NERDTreeIgnore = ['\.pyc$', '\.hi$', '\.o$']
 :noremap <leader>n :NERDTreeToggle<CR>
 :let NERDTreeWinSize = 45
+:command! Find NERDTreeFind
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+:let NERDSpaceDelims=1
 
 "Forces Airline to run all the time
 :set laststatus=2
@@ -98,6 +103,7 @@ endfunction
 :let g:ctrlp_extensions = ['tag']
 
 :set tags+=tags
+:nnoremap t<C-]> <C-w>g<C-]><C-w>T
 
 :let g:UltiSnipsExpandTrigger = '<c-space>'
 
@@ -167,6 +173,10 @@ autocmd VimEnter * SyntasticToggleMode "Default to passive mode
 "" YouCompleteMe
 :let g:ycm_key_list_previous_completion=['<Up>']
 
+" Incremental highlighting of search targets
+:set hlsearch
+:set incsearch
+:nnoremap noh :noh<CR>
 
 "********************
 "
@@ -211,7 +221,7 @@ autocmd VimEnter * SyntasticToggleMode "Default to passive mode
 noremap - dd
 
 "Arrow keys shift lines up and down
-:noremap <up> ddkkp
+:noremap <up> ddkP
 :noremap <down> ddp
 
 :noremap <left> <<
@@ -235,14 +245,14 @@ noremap - dd
 :nnoremap <leader>; $a;<Esc>
 
 " Removes trailing whitespace
-nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 "********************
 "
 "    Insert Mode
 "
 "********************
 
-"Most important mapping ever, jk quits insert mode. Just mash j and k quicy
+"Most important mapping ever, jk quits insert mode. Just mash j and k quickly
 :inoremap jk <esc>l
 :inoremap kj <esc>l
 
@@ -265,3 +275,8 @@ nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 "Indents/Unindents selected text
 :vnoremap <left> <gv
 :vnoremap <right> >gv
+
+:nnoremap <leader>mm  :silent !spotifytoggle<CR><C-L>
+:nnoremap <leader>mpr :silent !spotify prev<CR><C-L>
+:nnoremap <leader>mn  :silent !spotify next<CR><C-L>
+:nnoremap <leader>ms  :!spotify status<CR>
