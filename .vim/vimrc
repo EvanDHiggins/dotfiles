@@ -44,6 +44,8 @@ Plugin 'derekwyatt/vim-fswitch'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'terryma/vim-multiple-cursors'
 
 :call vundle#end()
 :filetype plugin indent on
@@ -176,7 +178,6 @@ autocmd VimEnter * SyntasticToggleMode "Default to passive mode
 " Incremental highlighting of search targets
 :set hlsearch
 :set incsearch
-:nnoremap noh :noh<CR>
 
 "********************
 "
@@ -275,8 +276,3 @@ noremap - dd
 "Indents/Unindents selected text
 :vnoremap <left> <gv
 :vnoremap <right> >gv
-
-:nnoremap <leader>mm  :silent !spotifytoggle<CR><C-L>
-:nnoremap <leader>mpr :silent !spotify prev<CR><C-L>
-:nnoremap <leader>mn  :silent !spotify next<CR><C-L>
-:nnoremap <leader>ms  :!spotify status<CR>

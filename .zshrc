@@ -2,14 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=${HOME}/.oh-my-zsh
-export GOPATH=${HOME}/golang
-export PATH="$HOME/.tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
 
 if [[ $(uname) == 'Darwin' ]]; then
     alias vim='mvim -v'
     alias vi='mvim -v'
+    alias vimdiff='mvimdiff -v'
 else
     alias vim=${HOME}/.vim-install/bin/vim
     alias vi=${HOME}/.vim-install/bin/vim
@@ -17,6 +15,10 @@ fi
 
 export PATH=$PATH:/Users/ehiggins/bin
 export PATH=$PATH:${HOME}/dotfiles/util
+
+function src() {
+  source ~/.zshrc
+}
 
 connectGerrit() {
   [[ $1 ]]    || { echo "No repository specified" >&2; return 1; }
@@ -36,6 +38,14 @@ function grh() {
   [[ $1 ]] || { echo "Must specify commit #" >&2; return 1; }
   git rebase -i HEAD~$1
 }
+
+alias grc="git rebase --continue"
+alias gra="git rebase --abort"
+alias g-="git checkout -"
+alias gs="git status"
+alias gr="git review -R"
+alias gpush="git stash"
+alias gpop="git stash pop"
 
 function makethosegoddamndecoders() {
   LAST="$(PWD)"

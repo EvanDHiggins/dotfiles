@@ -62,6 +62,9 @@ function link-dotfiles {
     echo "Linking .zshrc to ${HOME}/.zshrc"
     ln -s ${DOT_FILES_DIR}/.zshrc ${HOME}/.zshrc
 
+    echo "Linking .zshenv to $HOME/.zshenv"
+    ln -s ${DOT_FILES_DIR}/.zshenv ${HOME}/.zshenv
+
     echo "Linking .tmux.conf to ${HOME}/.tmux.conf"
     ln -s ${DOT_FILES_DIR}/.tmux.conf ${HOME}/.tmux.conf
 

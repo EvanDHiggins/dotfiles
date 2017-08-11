@@ -1,0 +1,4 @@
+#!/usr/bin/env osascript
+# Returns the current playing song in Spotify for OSX
+
+tell application "Spotify" to playpause

@@ -1,0 +1,18 @@
+#!/usr/local/bin/python
+import random
+import subprocess as s
+import sys
+
+if len(sys.argv) != 2:
+    print 'Call with ./batsignal $CHANNEL'
+    sys.exit(1)
+
+sentences = [
+        "Hey when you have a sec could you give me a hand?",
+        "I have a few questions when you have a minute.",
+        "Would you mind helping me out with something?"
+            ]
+
+q = sentences[random.randint(0, len(sentences) - 1)]
+
+s.call(['rocketChatMessage', sys.argv[1], q])

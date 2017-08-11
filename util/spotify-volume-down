@@ -1,0 +1,13 @@
+#!/usr/bin/env osascript
+
+tell application "Spotify"
+  if it is running then
+    set vol to get sound volume
+    set newvol to vol - 5
+    if newvol >= 0 then
+      set sound volume to newvol
+    else
+      set sound volume to 0
+    end if
+  end if
+end tell
