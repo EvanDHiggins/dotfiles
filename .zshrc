@@ -5,38 +5,15 @@
 eval "$(tmuxifier init -)"
 
 if [[ $(uname) == 'Darwin' ]]; then
-    alias vim='mvim -v'
-    alias vi='mvim -v'
-    alias vimdiff='mvimdiff -v'
-else
-    alias vim=${HOME}/.vim-install/bin/vim
-    alias vi=${HOME}/.vim-install/bin/vim
+    alias vim='nvim'
+    alias vi='nvim'
+    alias vimdiff='nvim -d'
 fi
 
-export PATH=$PATH:/Users/ehiggins/bin
 export PATH=$PATH:${HOME}/dotfiles/util
 
 function src() {
   source ~/.zshrc
-}
-
-connectGerrit() {
-  [[ $1 ]]    || { echo "No repository specified" >&2; return 1; }
-  git submodule update --init;
-  git remote add gerrit ssh://gerrit.belvederetrading.com:29418/$1;
-  git review -s
-}
-
-setupGit() {
-  [[ $1 ]]    || { echo "No repository specified" >&2; return 1; }
-  git clone ssh://gerrit:29418/$1;
-  cd $1;
-  connectGerrit $1;
-}
-
-function grh() {
-  [[ $1 ]] || { echo "Must specify commit #" >&2; return 1; }
-  git rebase -i HEAD~$1
 }
 
 alias grc="git rebase --continue"
@@ -46,25 +23,6 @@ alias gs="git status"
 alias gr="git review -R"
 alias gpush="git stash"
 alias gpop="git stash pop"
-
-function makethosegoddamndecoders() {
-  LAST="$(PWD)"
-  cd ~/git/ExchangeSimulator/HighFrequency/BT.Protocols/BT.Protocols.Scripts/
-  if [[ ! -d env ]]; then
-    virtualenv env
-  fi
-  source env/bin/activate
-  pip install -r requirements.txt
-  python parse_yaml_template_fix.py ../../BT.Execution/BT.Execution.Protocols/CMEFix/YAML/CMEFixMessages.yaml \
-                                    ../../BT.Execution/BT.Execution.Protocols/CMEFix/YAML/CMEFix42.yaml \
-                                    ../../
-  deactivate
-  cd ${LAST}
-}
-
-function spotifytoggle() {
-  spotify status | grep -i playing 1>/dev/null 2>&1 && spotify pause || spotify play
-}
 
 ZSH_THEME="af-magic"
 
