@@ -42,17 +42,24 @@ function linux-vim-install {
     cd ${SCRIPT_DIR}
 }
 
-function osx-vim-install {
+function require-homebrew {
     if ! type "brew" > /dev/null ; then
         echo "Brew does not exist. Installing..."
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
+}
 
-    echo "Installing vim with homebrew..."
+function osx-neovim-install {
+    require-homebrew
+
+    echo "Installing neovim with homebrew..."
     brew update
-    brew install tmux macvim zsh ctags
-    brew link macvim
-    VIM_BIN='mvim -v'
+    brew install neovim zsh ctags
+
+    # Install tmux with true color support
+    brew install https://raw.githubusercontent.com/choppsv1/homebrew-term24/master/tmux.rb
+
+    VIM_BIN='nvim'
 }
 
 # Links various config files to their location. Most of these
@@ -68,14 +75,12 @@ function link-dotfiles {
     echo "Linking .tmux.conf to ${HOME}/.tmux.conf"
     ln -s ${DOT_FILES_DIR}/.tmux.conf ${HOME}/.tmux.conf
 
-    echo "Linking .vim directory to ${HOME}/.vim"
-    ln -s ${DOT_FILES_DIR}/.vim ${HOME}/.vim
+    echo "Linking init.vim"
+    mkdir --parents ${HOME}/.config/nvim/
+    ln -s ${DOT_FILES_DIR}/init.vim ${HOME}/.config/nvim/init.vim
 }
 
 function main {
-    # This will typically be ~/dotfiles
-    DOT_VIM_DIR=${SCRIPT_DIR}/.vim
-
     # Install vim based on system
     if [[ "$(uname -s)" == "Darwin" ]]; then
         osx-vim-install
@@ -89,17 +94,13 @@ function main {
     git clone git://github.com/robbyrussell/oh-my-zsh.git ${HOME}/.oh-my-zsh
 
 
-    echo "Initializing Vundle..."
-    git clone https://github.com/gmarik/Vundle ${DOT_VIM_DIR}/bundle/Vundle.vim
+    echo "Initializing vim-plug"
+    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
     cd $SCRIPT_DIR
-    ${VIM_BIN} +PluginInstall +qall
+    ${VIM_BIN} +PlugInstall +qall
 
-
-    echo "Setting up YouCompleteMe..."
-    echo "Based on past experience this will almost certainly fail."
-    cd ${DOT_VIM_DIR}/bundle/YouCompleteMe/
-    ./install.py
-    cd $HOME
     chsh -s "$(which zsh)"
     env zsh
 }
