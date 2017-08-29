@@ -76,14 +76,14 @@ function link-dotfiles {
     ln -s ${DOT_FILES_DIR}/.tmux.conf ${HOME}/.tmux.conf
 
     echo "Linking init.vim"
-    mkdir --parents ${HOME}/.config/nvim/
+    mkdir -p ${HOME}/.config/nvim/
     ln -s ${DOT_FILES_DIR}/init.vim ${HOME}/.config/nvim/init.vim
 }
 
 function main {
     # Install vim based on system
     if [[ "$(uname -s)" == "Darwin" ]]; then
-        osx-vim-install
+        osx-neovim-install
     else
         linux-vim-install
     fi

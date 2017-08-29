@@ -32,9 +32,4 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-function tmuxall() {
-  for file in ~/.tmuxifier/layouts/*; 
-  do 
-    tmuxifier load-window "$(basename $file | awk -F '.' '{print $1}')"
-  done
-}
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
