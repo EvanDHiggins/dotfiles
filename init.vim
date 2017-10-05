@@ -99,6 +99,12 @@ noremap - dd
 :inoremap jk <esc>l
 :inoremap kj <esc>l
 
+"Better curly brace functionality, probably a plugin to do this better
+:inoremap {      {}<Left>
+:inoremap {<CR>  {<CR>}<Esc>O
+:inoremap {{     {
+:inoremap {}     {}
+
 " }}}
 
 " Visual Mode {{{
