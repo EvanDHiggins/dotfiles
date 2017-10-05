@@ -2,7 +2,9 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-eval "$(tmuxifier init -)"
+type tmuxifier 1>/dev/null && eval "$(tmuxifier init -)"
+
+alias csserver="ssh eh169@csserver.evansville.edu"
 
 if [[ $(uname) == 'Darwin' ]]; then
     alias vim='nvim'
@@ -33,3 +35,5 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source ~/.zshenv
