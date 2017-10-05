@@ -17,11 +17,17 @@ call plug#begin()
 
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'fatih/vim-go'
+Plug 'roxma/nvim-completion-manager'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
+
+filetype plugin on
 
 " }}}
 
@@ -35,13 +41,20 @@ nnoremap <leader>ft :NERDTreeToggle<CR>
 
 " }}}
 
+" Golang {{{
+let go_doc_kwordprg_enabled = 1
+" }}}
+
 " Movement {{{
 
 "Some Nice movement help
 :noremap J 10j
 :noremap K 10k
-:noremap H ^
-:noremap L $
+
+:noremap <buffer> <silent> k gk
+:noremap <buffer> <silent> j gj
+:noremap <buffer> <silent> H g^
+:noremap <buffer> <silent> L g$
 
 " }}}
 

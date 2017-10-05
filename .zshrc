@@ -5,6 +5,7 @@
 type tmuxifier 1>/dev/null && eval "$(tmuxifier init -)"
 
 alias csserver="ssh eh169@csserver.evansville.edu"
+alias src="source ~/.zshrc; source ~/.zshenv; tmux source-file ~/.tmux.conf"
 
 if [[ $(uname) == 'Darwin' ]]; then
     alias vim='nvim'
@@ -33,6 +34,10 @@ HYPHEN_INSENSITIVE="true"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+for ext in ~/dotfiles/shell-extensions/*.ext.sh; do
+    echo "Loading $(basename $ext)"
+    source $ext
+done
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
