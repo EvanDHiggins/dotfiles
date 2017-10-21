@@ -2,44 +2,11 @@
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-function linux-vim-install {
-    VIMINSTALL=${HOME}/.vim-install/
-    VIMSRC=${HOME}/.vim-source/
-
-    echo "You are about to build vim from source. It will be installed to ${VIMINSTALL}."
-    read -p "Would you like to continue? [Y/n]" -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Yy]?$ ]]; then
-        "Defaulting to system vim. Some of this shit might break. Hold on tight."
-        VIM_BIN="$(which vim)"
-        return
-    fi
-
-    sudo apt -y install tmux zsh libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev \
-        libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
-        python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git cmake ctags
-
-    git clone https://github.com/vim/vim.git $VIMSRC
-    cd $VIMSRC
-    ./configure --with-features=huge \
-               --enable-multibyte \
-               --enable-rubyinterp=yes \
-               --enable-pythoninterp=yes \
-               --with-python-config-dir=/usr/lib/python2.7/`ls /usr/lib/python2.7/ | grep "^config"` \
-               --enable-python3interp=yes \
-               --with-python3-config-dir=/usr/lib/python3.5/`ls /usr/lib/python3.5/ | grep "^config"` \
-               --enable-perlinterp=yes \
-               --enable-luainterp=yes \
-               --enable-gui=gtk2 --enable-cscope --prefix=$VIMINSTALL
-
-    make install
-
-    U=$USER
-    sudo chown ${U}:${U} ${VIMINSTALL} -R
-    VIM_BIN=${VIMINSTALL}/bin/vim
-    echo "Cleaning up vim source files..."
-    rm -rf ${VIMSRC}
-    cd ${SCRIPT_DIR}
+function linux-neovim-install {
+    sudo add-apt-repository ppa:neovim-ppa/stable
+    sudo apt update
+    sudo apt install neovim tmux zsh
+    VIM_BIN="$(which nvim)"
 }
 
 function require-homebrew {
@@ -85,7 +52,7 @@ function main {
     if [[ "$(uname -s)" == "Darwin" ]]; then
         osx-neovim-install
     else
-        linux-vim-install
+        linux-neovim-install
     fi
 
     link-dotfiles $SCRIPT_DIR
