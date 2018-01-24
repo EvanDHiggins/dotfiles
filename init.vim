@@ -21,9 +21,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'fatih/vim-go'
-Plug 'roxma/nvim-completion-manager'
 Plug 'tpope/vim-fugitive'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -100,10 +99,10 @@ noremap - dd
 :inoremap kj <esc>l
 
 "Better curly brace functionality, probably a plugin to do this better
-:inoremap {      {}<Left>
-:inoremap {<CR>  {<CR>}<Esc>O
-:inoremap {{     {
-:inoremap {}     {}
+":inoremap {      {}<Left>
+":inoremap {<CR>  {<CR>}<Esc>O
+":inoremap {{     {
+":inoremap {}     {}
 
 " }}}
 
