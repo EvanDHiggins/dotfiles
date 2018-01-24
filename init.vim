@@ -24,9 +24,24 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs'
 
+" pip3 install neovim
+Plug 'Shougo/deoplete.nvim', { 'do' : ':UpdateRemotePlugins' }
+Plug 'ervandew/supertab'
+
+" pip install jedi
+Plug 'zchee/deoplete-jedi'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 call plug#end()
 
 filetype plugin on
+
+" }}}
+
+" Deoplete {{{
+
+let g:deoplete#enable_at_startup = 1
 
 " }}}
 
