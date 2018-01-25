@@ -33,7 +33,6 @@ Plug 'ervandew/supertab'
 Plug 'zchee/deoplete-jedi'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
->>>>>>> 47d0b19bbf84e37a0d49a84ff208a27511a94aea
 
 call plug#end()
 
