@@ -40,5 +40,9 @@ for ext in ~/dotfiles/shell-extensions/*.ext.sh; do
 done
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#bindkey '"\C-p": vim $(fzf);'
+bindkey -s '\C-o' 'vim $(fzf)\n'
 
 source ~/.zshenv

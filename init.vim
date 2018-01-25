@@ -21,15 +21,29 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'fatih/vim-go'
-Plug 'roxma/nvim-completion-manager'
 Plug 'tpope/vim-fugitive'
 Plug 'rust-lang/rust.vim'
 Plug 'raimondi/delimitMate'
 
+" pip3 install neovim
+Plug 'Shougo/deoplete.nvim', { 'do' : ':UpdateRemotePlugins' }
+Plug 'ervandew/supertab'
+
+" pip install jedi
+Plug 'zchee/deoplete-jedi'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+>>>>>>> 47d0b19bbf84e37a0d49a84ff208a27511a94aea
+
 call plug#end()
 
 filetype plugin on
+
+" }}}
+
+" Deoplete {{{
+
+let g:deoplete#enable_at_startup = 1
 
 " }}}
 
@@ -102,10 +116,10 @@ noremap - dd
 :inoremap kj <esc>l
 
 "Better curly brace functionality, probably a plugin to do this better
-:inoremap {      {}<Left>
-:inoremap {<CR>  {<CR>}<Esc>O
-:inoremap {{     {
-:inoremap {}     {}
+":inoremap {      {}<Left>
+":inoremap {<CR>  {<CR>}<Esc>O
+":inoremap {{     {
+":inoremap {}     {}
 
 " }}}
 
