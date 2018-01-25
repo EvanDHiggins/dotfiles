@@ -24,6 +24,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'fatih/vim-go'
 Plug 'roxma/nvim-completion-manager'
 Plug 'tpope/vim-fugitive'
+Plug 'rust-lang/rust.vim'
+Plug 'raimondi/delimitMate'
 
 call plug#end()
 
