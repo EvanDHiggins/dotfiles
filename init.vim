@@ -22,7 +22,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
-Plug 'jiangmiao/auto-pairs'
+Plug 'rust-lang/rust.vim'
+Plug 'raimondi/delimitMate'
 
 " pip3 install neovim
 Plug 'Shougo/deoplete.nvim', { 'do' : ':UpdateRemotePlugins' }
