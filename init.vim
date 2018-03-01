@@ -34,6 +34,8 @@ Plug 'zchee/deoplete-jedi'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+Plug 'sebastianmarkow/deoplete-rust'
+
 call plug#end()
 
 filetype plugin on
@@ -43,6 +45,9 @@ filetype plugin on
 " Deoplete {{{
 
 let g:deoplete#enable_at_startup = 1
+
+let g:deoplete#source#rust#racer_binary='/'
+let g:deoplete#sources#rust#rust_source_path='/'
 
 " }}}
 
