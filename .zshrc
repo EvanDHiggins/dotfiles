@@ -19,6 +19,16 @@ function src() {
   source ~/.zshrc
 }
 
+# Adds binding to press C-g and get the man page of 
+# the current input line in a new tmux window
+function man-lookup() {
+    tmux new-window "man ${BUFFER%% *}"
+    zle push-line
+    zle accept-line
+}
+zle -N man-lookup man-lookup
+bindkey "\eg" man-lookup
+
 alias grc="git rebase --continue"
 alias gra="git rebase --abort"
 alias g-="git checkout -"
