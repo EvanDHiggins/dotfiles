@@ -44,7 +44,21 @@ filetype plugin on
 
 " Deoplete {{{
 
+
 let g:deoplete#enable_at_startup = 1
+autocmd FileType python let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:UltiSnipsExpandTrigger="<c-j>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Prevent preview window from automatically showing up
+:nnoremap <leader>t :pclose<CR>
+":let g:deoplete#sources.python = ['ultisnips', 'buffer', 'jedi', 'file']
+
+" }}}
+
+" Ultisnips {{{
+
+let g:UltiSnipsSnippetDirectories = '~/.config/nvim/plugged/vim-snippets/snippets/'
 
 let g:deoplete#source#rust#racer_binary='/'
 let g:deoplete#sources#rust#rust_source_path='/'
@@ -59,10 +73,6 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 nnoremap <leader>ft :NERDTreeToggle<CR>
 
-" }}}
-
-" Golang {{{
-let go_doc_kwordprg_enabled = 1
 " }}}
 
 " Movement {{{
@@ -118,12 +128,6 @@ noremap - dd
 "Most important mapping ever, jk quits insert mode. Just mash j and k quicy
 :inoremap jk <esc>l
 :inoremap kj <esc>l
-
-"Better curly brace functionality, probably a plugin to do this better
-":inoremap {      {}<Left>
-":inoremap {<CR>  {<CR>}<Esc>O
-":inoremap {{     {
-":inoremap {}     {}
 
 " }}}
 
