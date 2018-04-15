@@ -41,7 +41,7 @@ ZSH_THEME="af-magic"
 
 HYPHEN_INSENSITIVE="true"
 
-plugins=(git)
+plugins=(git colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
 for ext in ~/dotfiles/shell-extensions/*.ext.sh; do
