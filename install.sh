@@ -21,7 +21,7 @@ function osx-neovim-install {
 
     echo "Installing neovim with homebrew..."
     brew update
-    brew install neovim zsh ctags
+    brew install neovim tmux zsh ctags
 
     # Install tmux with true color support
     brew install https://raw.githubusercontent.com/choppsv1/homebrew-term24/master/tmux.rb
@@ -72,8 +72,9 @@ function main {
     cd $SCRIPT_DIR
     ${VIM_BIN} +PlugInstall +qall
 
+    # Needed so chsh sees a 'standard shell'
+    sudo bash -c "echo \"$(which zsh)\" >> /etc/shells"
     chsh -s "$(which zsh)"
     env zsh
 }
 main
-echo "Done. Who needs an IDE."
