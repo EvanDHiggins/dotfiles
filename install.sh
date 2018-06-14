@@ -26,6 +26,10 @@ function osx-neovim-install {
     # Install tmux with true color support
     brew install https://raw.githubusercontent.com/choppsv1/homebrew-term24/master/tmux.rb
 
+    brew install python3
+    pip3 install neovim
+    nvim +UpdateRemotePlugins +qall
+
     VIM_BIN='nvim'
 }
 
